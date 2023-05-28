@@ -1,53 +1,22 @@
-import { Component } from "react";
-// import PropTypes from "prop-types";
-// import css from './FormFeedback.module.css';
+import PropTypes from "prop-types";
+import css from './Statistics.module.css';
 
-export class Statistics extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0
-  }
+export const Statistics = (statistics) => (
+    <div>
+    {Object.keys(statistics).map((name, index) => (
+      <p key={index}>{name}: {statistics[name]}</p>
+      ))}
+    </div>
+  )
 
-  btnClick = e => {
-    const  btnName  = e.target.textContent;
-    console.dir(btnName);
-    this.setState({ [btnName]: 1 });
-  }
-
-  render() {
-    const { good, neutral, bad } = this.state;
-
-    return (
-      <div>
-
-        <p>Please leave feedback</p>
-        <div>
-          <button onClick={this.btnClick}>Good</button>
-          <button onClick={this.btnClick}>Neutral</button>
-          <button onClick={this.btnClick}>Bad</button>
-        </div>
-
-        <p>Statistics</p>
-        <div>
-          <p>Good: {good}</p>
-          <p>Neutral: {neutral}</p>
-          <p>Bad: {bad}</p>
-        </div>
-      </div>
-    )
-  }
-}
-
-
-
-// Statistics.propTypes = {
-//   title: PropTypes.string,
-//   stats: PropTypes.arrayOf(
-//     PropTypes.exact({
-//       id: PropTypes.string.isRequired,
-//       label: PropTypes.string.isRequired,
-//       percentage: PropTypes.number.isRequired,
-//     })
-//   ).isRequired
-// };
+  
+  // export const Statistics =
+  // ({ good, neutral, bad, total, positivePercentage }) => (
+  //   <div>
+  //     <p>Good: {good}</p>
+  //     <p>Neutral: {neutral}</p>
+  //     <p>Bad: {bad}</p>
+  //     <p>Total: {total}</p>
+  //     <p>Positive: {positivePercentage}%</p>
+  //   </div>
+  // )
