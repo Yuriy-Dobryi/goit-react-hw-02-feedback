@@ -1,33 +1,45 @@
 import { Component } from "react";
-import PropTypes from "prop-types";
-import css from './Statistics.module.css';
+// import PropTypes from "prop-types";
+// import css from './FormFeedback.module.css';
 
-export class FormFeedback extends Component {
+export class Statistics extends Component {
   state = {
-    login: '',
+    good: 0,
+    neutral: 0,
+    bad: 0
   }
 
-  handleFormSubmit(e) {
-    e.preventDefault();
-
-    const { login } = e.target.elements;
-    console.log(login.value);
+  btnClick = e => {
+    const  btnName  = e.target.textContent;
+    console.dir(btnName);
+    this.setState({ [btnName]: 1 });
   }
 
-  handleFormChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
-    console.log();
-  }
   render() {
+    const { good, neutral, bad } = this.state;
+
     return (
-      <form onSubmit={this.handleFormSubmit}>
-        <input onChange={this.handleFormChange} value={this.state.login} name="login" type="text" />
-        <button type="submit">Submit</button>
-      </form>
+      <div>
+
+        <p>Please leave feedback</p>
+        <div>
+          <button onClick={this.btnClick}>Good</button>
+          <button onClick={this.btnClick}>Neutral</button>
+          <button onClick={this.btnClick}>Bad</button>
+        </div>
+
+        <p>Statistics</p>
+        <div>
+          <p>Good: {good}</p>
+          <p>Neutral: {neutral}</p>
+          <p>Bad: {bad}</p>
+        </div>
+      </div>
     )
   }
 }
+
+
 
 // Statistics.propTypes = {
 //   title: PropTypes.string,
